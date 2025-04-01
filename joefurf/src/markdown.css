@@ -1,0 +1,39 @@
+.markdown-parent {
+    color: oklch(0.372 0.044 257.287);
+}
+
+.markdown-parent h1 {
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.markdown-parent h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.markdown-parent h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.markdown-parent h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.markdown-parent h5 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.markdown-parent h6 {
+    font-size: 1rem;
+    color: oklch(0.554 0.046 257.417);
+    font-weight: 600;
+}
+
+.markdown-parent ul {
+    list-style: disc;
+    padding-left: 40px
+}

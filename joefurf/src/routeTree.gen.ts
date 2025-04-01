@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RoadmapImport } from './routes/roadmap'
 import { Route as BlogImport } from './routes/blog'
+import { Route as ArticleImport } from './routes/article'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -26,6 +27,12 @@ const RoadmapRoute = RoadmapImport.update({
 const BlogRoute = BlogImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ArticleRoute = ArticleImport.update({
+  id: '/article',
+  path: '/article',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,6 +51,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/article': {
+      id: '/article'
+      path: '/article'
+      fullPath: '/article'
+      preLoaderRoute: typeof ArticleImport
       parentRoute: typeof rootRoute
     }
     '/blog': {
@@ -67,12 +81,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
 }
@@ -80,27 +96,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/roadmap'
+  fullPaths: '/' | '/article' | '/blog' | '/roadmap'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/roadmap'
-  id: '__root__' | '/' | '/blog' | '/roadmap'
+  to: '/' | '/article' | '/blog' | '/roadmap'
+  id: '__root__' | '/' | '/article' | '/blog' | '/roadmap'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArticleRoute: typeof ArticleRoute
   BlogRoute: typeof BlogRoute
   RoadmapRoute: typeof RoadmapRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArticleRoute: ArticleRoute,
   BlogRoute: BlogRoute,
   RoadmapRoute: RoadmapRoute,
 }
@@ -116,12 +135,16 @@ export const routeTree = rootRoute
       "filePath": "__root.jsx",
       "children": [
         "/",
+        "/article",
         "/blog",
         "/roadmap"
       ]
     },
     "/": {
       "filePath": "index.jsx"
+    },
+    "/article": {
+      "filePath": "article.jsx"
     },
     "/blog": {
       "filePath": "blog.jsx"
