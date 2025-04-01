@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageLayout } from "../components/PageLayout";
-import { Tag, Collapse, Col } from 'antd';
+import { Tag, Collapse } from 'antd';
 
 import {
   FaLinkedin,
@@ -13,6 +13,7 @@ import stripe from "../assets/stripe.jpeg";
 import martinrea from "../assets/martinrea.png";
 import airtime from "../assets/airtime.png";
 import dipole from "../assets/dipole.png";
+import mcmaster from "../assets/mcmaster.png";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -48,17 +49,17 @@ const Tags = () => {
 };
 
 const JobHeader = ({company, logo, role, time}) => {
-  return <div className="flex justify-between items-center">
+  return <div className="flex flex-col gap-3 md:gap-2 md:flex-row md:justify-between md:items-center">
   <div className="flex items-center gap-2">
-    <img src={logo} alt={company + " Logo"} className="w-6 rounded-sm" />
-    <p className="!text-slate-700 !text-base">{company} - <span className="font-medium">{role}</span></p>
+    <img src={logo} alt={company + " Logo"} className="w-5 rounded-sm" />
+    <p className="!text-slate-700 !text-sm md:!text-base">{company} - <span className="font-medium">{role}</span></p>
   </div>
-  <p className="!text-slate-700 !text-base">{time}</p>
+  <p className="!text-slate-500 md:!text-base !text-sm">{time}</p>
 </div>
 };
 
 const JobDetails = ({items}) => {
-  return <ul className="list-disc ml-6">
+  return <ul className="list-disc ml-6 text-slate-700">
     {items}
   </ul>;
 }
@@ -69,7 +70,7 @@ const Career = () => {
       key: '1',
       label: <JobHeader company="Stripe" logo={stripe} role="Software Engineer" time="Starting April, 2025" />,
       children: <JobDetails items={[
-        <li><span className="text-slate-500">Starting in April, 2025</span> - building Stripe's <span className="text-indigo-700">Organizations & Auth</span> product</li>
+        <li><span className="text-slate-500">Starting in April, 2025</span> - building Stripe's <a href="https://docs.stripe.com/get-started/account/orgs" target="_blank" className="!text-indigo-700 hover:!underline cursor-pointer">Organizations & Auth</a> product</li>
       ]} />,
     },
     {
@@ -93,7 +94,7 @@ const Career = () => {
     },
     {
       key: '4',
-      label: <JobHeader company="Martinrea" logo={martinrea} role="Software Engineering Intern" time="2018-2022" />,
+      label: <JobHeader company="Martinrea" logo={martinrea} role="SWE Intern" time="2018-2022" />,
       children: <JobDetails items={[
         <li>Developed web-based UI tools for Martinrea's Autonomous Mobile Robot (AMR) product</li>,
         <li>Optimized computer vision and navigation algorithms for AMRs</li>,
@@ -107,7 +108,22 @@ const Career = () => {
         <li>Developed a software product & management platform for an order-ahead cloud kitchen start-up</li>,
         <li>Deployed and delivered food to 150+ customers in Hamilton, Ontario</li>,
         <li className="text-slate-500">Order scheduling, route optimization, Stripe payment processing, on-call production support</li>,
-        <li className="text-rose-600">Closed in 2021 due to difficulties in operating during COVID-19 pandemic</li>,
+        <li className="text-rose-900">Closed in 2021 due to difficulties in operating during COVID-19 pandemic</li>,
+      ]} />,
+    },
+  ];
+
+  return <Collapse accordion items={items} />
+}
+
+const Education = () => {
+  const items = [
+    {
+      key: '1',
+      label: <JobHeader company="McMaster University" logo={mcmaster} role="Computer Science" time="2019-2023" />,
+      children: <JobDetails items={[
+        <li>Learned fundamentals of computer science and made some great friends and memories along the way</li>,
+        <li className="text-slate-500">Data structures & algorithms, computer architecture, concurrent systems, computer networks & security, discrete math, human computer interfaces, compilers</li>
       ]} />,
     },
   ];
@@ -132,9 +148,9 @@ const getAge = () => {
 function RouteComponent() {
   return (
     <PageLayout>
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col-reverse gap-4 md:flex-row items-center md:justify-between">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 items-center md:items-start">
             <h1 className="text-4xl text-slate-700 font-medium">Joe Furfaro</h1>
             <a
               href="https://maps.app.goo.gl/W1VfnKGWiUPyQS9w6"
@@ -147,10 +163,10 @@ function RouteComponent() {
               </span>
             </a>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-1 flex-wrap gap-y-2 justify-center md:justify-start">
             <Tags />
           </div>
-          <div className="flex flex-row gap-2 text-2xl mt-1 text-slate-700">
+          <div className="flex flex-row gap-3 md:gap-2 text-4xl md:text-2xl mt-1 text-slate-700 justify-center md:justify-start">
             <SocialLink
               href="https://www.linkedin.com/in/joe-furfaro/"
               icon={<FaLinkedin />}
@@ -167,15 +183,15 @@ function RouteComponent() {
         </div>
         <img
           src={me}
-          className="h-40 w-40 rounded-sm shadow-md"
+          className="h-40 w-40 rounded-full shadow-xl"
         />
       </div>
-      <div className="flex flex-col gap-3 text-slate-700">
+      <div className="flex flex-col gap-6 text-slate-700">
         <p>
-          Hello fellow human - welcome to my very small corner of the internet.
+          Hello fellow human 👋 welcome to my very small corner of the internet!
         </p>
         <p>
-          I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball <span className="italic text-slate-500">(or without, I suppose)</span>, enjoying nature, visiting new places, singing, playing League of Legends, speedrunning Minecraft, and many other things!
+          I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball <span className="italic text-slate-500">(or without, I suppose)</span>, enjoying nature, visiting new places, singing, playing League of Legends, speedrunning Minecraft, and many other things.
         </p>
         <p>
           Whether it be with my family, my friends, or <a className="text-emerald-700 hover:underline" href="https://www.linkedin.com/in/briana-da-silva-2000/" target="_blank">my beautiful girlfriend Briana</a>, I value deep conversations and meaningful connection above most other things. However, I am <span className="font-medium italic">*slowly*</span> learning to also appreciate the simple things more: <span className="text-blue-800">a cool breeze</span> on a summer day or <span className="text-amber-700">the taste of fresh salmon sashimi</span> on the first bite.
@@ -186,6 +202,9 @@ function RouteComponent() {
       </div>
       <h2 className="text-2xl text-slate-700 font-medium">My Career</h2>
       <Career />
+      <h2 className="text-2xl text-slate-700 font-medium">My Education</h2>
+      <Education />
+      
     </PageLayout>
   );
 }

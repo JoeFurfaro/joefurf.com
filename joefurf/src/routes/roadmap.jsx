@@ -101,7 +101,7 @@ function RouteComponent() {
           },
           {
             color: "gray",
-            children: "Become a grandfather, and a healthy one at that",
+            children: "Become a grandfather; a healthy one at that",
           },
           {
             color: "gray",
