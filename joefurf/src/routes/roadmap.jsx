@@ -10,14 +10,14 @@ function RouteComponent() {
   return (
     <PageLayout>
       <h1 className="font-medium text-slate-700 text-3xl">Roadmap</h1>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <p className="text-slate-700 italic font-medium">
           I know it's strange to have a roadmap for an entire person.
         </p>
         <p className="text-slate-700">
           But just for fun, give it a chance - a rough overview of some proud
           past moments and planned milestones of any size. No rules; simply
-          however I feel like visualizing my life story to the public internet.
+          how I want to visualize my life story to the public internet.
         </p>
         <p className="text-slate-500">
           Disclaimer: I reserve the right change this roadmap at any time, with no criticism from any project manager, similar title, or any title for that matter. Also, the future items come in no particular order.
@@ -27,7 +27,7 @@ function RouteComponent() {
         items={[
           {
             color: "green",
-            children: "Make close friends at school",
+            children: "Find good friends at school",
           },
           {
             color: "green",
@@ -45,8 +45,8 @@ function RouteComponent() {
             color: "green",
             children: <>
               <p>Find a stable full-time job</p>
-              <p>Have a positive influence on people's lives at said job</p>
-              <p>Implement a major product at said job</p>
+              <p>Have a positive influence on people at said job</p>
+              <p>Implement something big at said job</p>
             </>,
           },
           {
@@ -77,11 +77,15 @@ function RouteComponent() {
           },
           {
             color: "gray",
-            children: "Hit plat in League of Legends",
+            children: "Produce a \"higher-production\" video",
           },
           {
             color: "gray",
             children: "Launch AIRTIME",
+          },
+          {
+            color: "gray",
+            children: "Hit platinum in League of Legends",
           },
           {
             color: "gray",
@@ -109,6 +113,7 @@ function RouteComponent() {
           }
         ]}
       />
+      <h1 className="text-slate-700 text-xl">The End <span className="text-base text-slate-500">... or maybe not?</span></h1>
     </PageLayout>
   );
 }

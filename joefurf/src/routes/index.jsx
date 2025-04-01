@@ -36,7 +36,7 @@ const Tags = () => {
     {label: "Nerd (Engineer)", variant: "slate"},
     {label: "Athlete", variant: "slate"},
     {label: "Adventurer", variant: "slate"},
-    {label: "Zac Jungle Main", variant: "green"},
+    {label: "Zac Main", variant: "green"},
   ];
 
   return tags.map(tag => {

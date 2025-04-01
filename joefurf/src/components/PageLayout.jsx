@@ -7,7 +7,7 @@ const nav_items = [
 ]
 
 export const PageLayout = ({children}) => {
-    return <div className="mx-auto flex flex-col gap-8 container max-w-[768px] p-8">
+    return <div className="mx-auto flex flex-col gap-8 container max-w-[768px] px-8 pt-8 pb-18">
         <Navbar items={nav_items} />
         {children}
     </div>
