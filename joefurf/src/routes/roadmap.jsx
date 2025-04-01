@@ -97,7 +97,11 @@ function RouteComponent() {
           },
           {
             color: "gray",
-            children: "Become a parent",
+            children: "Become a father",
+          },
+          {
+            color: "gray",
+            children: "Become a grandfather, and a healthy one at that",
           },
           {
             color: "gray",
