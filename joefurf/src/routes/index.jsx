@@ -194,7 +194,7 @@ function RouteComponent() {
           I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball <span className="italic text-slate-500">(or without, I suppose)</span>, enjoying nature, visiting new places, singing, playing League of Legends, speedrunning Minecraft, and many other things.
         </p>
         <p>
-          Whether it be with my family, my friends, or <a className="text-emerald-700 hover:underline" href="https://www.linkedin.com/in/briana-da-silva-2000/" target="_blank">my beautiful girlfriend Briana</a>, I value deep conversations and meaningful connection above most other things. However, I am <span className="font-medium italic">*slowly*</span> learning to also appreciate the simple things more: <span className="text-blue-800">a cool breeze</span> on a summer day or <span className="text-amber-700">the taste of fresh salmon sashimi</span> on the first bite.
+          Whether it be with my family, my friends, or my beautiful girlfriend Briana, I value deep conversations and meaningful connection above most other things. However, I am <span className="font-medium italic">*slowly*</span> learning to also appreciate the simple things more: <span className="text-blue-800">a cool breeze</span> on a summer day or <span className="text-amber-700">the taste of fresh salmon sashimi</span> on the first bite.
         </p>
         <p>
           I am <span className="italic text-slate-500">(almost)</span> always happy to connect and get to know each other! Feel free to shoot me a connect request on <a className="text-emerald-700 hover:underline" href="https://www.linkedin.com/in/joe-furfaro/" target="_blank">LinkedIn</a>.
