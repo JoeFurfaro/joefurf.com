@@ -66,13 +66,13 @@ const JobDetails = ({items}) => {
 
 const Career = () => {
   const items = [
-    {
-      key: '1',
-      label: <JobHeader company="Stripe" logo={stripe} role="Software Engineer" time="Starting April, 2025" />,
-      children: <JobDetails items={[
-        <li><span className="text-slate-500">Starting in April, 2025</span> - building Stripe's <a href="https://docs.stripe.com/get-started/account/orgs" target="_blank" className="!text-indigo-700 hover:!underline cursor-pointer">Organizations & Auth</a> product</li>
-      ]} />,
-    },
+    // {
+    //   key: '1',
+    //   label: <JobHeader company="Stripe" logo={stripe} role="Software Engineer" time="Starting April, 2025" />,
+    //   children: <JobDetails items={[
+    //     <li><span className="text-slate-500">Starting in April, 2025</span> - building Stripe's <a href="https://docs.stripe.com/get-started/account/orgs" target="_blank" className="!text-indigo-700 hover:!underline cursor-pointer">Organizations & Auth</a> product</li>
+    //   ]} />,
+    // },
     {
       key: '2',
       label: <JobHeader company="AIRTIME (start-up)" logo={airtime} role="Tech Lead" time="Current" />,
