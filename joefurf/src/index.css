@@ -1,7 +1,97 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-text-main: var(--text-main);
+  --color-text-secondary: var(--text-secondary);
+  --color-tag-background: var(--tag-background);
+  --color-tag-border: var(--tag-border);
+  --color-tag-text-green: var(--tag-text-green);
+  --color-tag-border-green: var(--tag-border-green);
+  --color-tag-background-green: var(--tag-background-green);
+  --color-hyperlink: var(--hyperlink);
+  --color-cool-breeze: var(--cool-breeze);
+  --color-sashimi: var(--sashimi);
+  --color-closed: var(--closed);
+  --color-fe: var(--fe);
+  --color-main-bg: var(--main-bg);
+  --color-theme-icon: var(--theme-icon);
+}
+
+.theme-light {
+  --text-main: oklch(37.2% 0.044 257.287);
+  --text-secondary: oklch(55.4% 0.046 257.417);
+  --tag-background: oklch(92.9% 0.013 255.508);
+  --tag-border: oklch(86.9% 0.022 252.894);
+  --tag-text-green: oklch(43.2% 0.095 166.913);
+  --tag-border-green: oklch(84.5% 0.143 164.978);
+  --tag-background-green: oklch(95% 0.052 163.051);
+  --hyperlink: oklch(50.8% 0.118 165.612);
+  --cool-breeze: oklch(42.4% 0.199 265.638);
+  --sashimi: oklch(55.5% 0.163 48.998);
+  --closed: oklch(41% 0.159 10.272);
+  --fe: oklch(45.7% 0.24 277.023);
+  --main-bg: oklch(0.968 0.007 247.896);
+  --theme-icon: oklch(55.5% 0.163 48.998);
+  background: var(--main-bg);
+}
+
+.theme-dark {
+  --text-main: oklch(86.9% 0.022 252.894);
+  --text-secondary: oklch(70.4% 0.04 256.788);
+  --tag-background: oklch(37.2% 0.044 257.287);
+  --tag-border: oklch(44.6% 0.043 257.281);
+  --tag-text-green: oklch(95% 0.052 163.051);
+  --tag-border-green: oklch(43.2% 0.095 166.913);
+  --tag-background-green: oklch(50.8% 0.118 165.612);
+  --hyperlink: oklch(84.5% 0.143 164.978);
+  --cool-breeze: oklch(70.7% 0.165 254.624);
+  --sashimi: oklch(87.9% 0.169 91.605);
+  --closed: oklch(81% 0.117 11.638);
+  --fe: oklch(67.3% 0.182 276.935);
+  --main-bg: oklch(12.9% 0.042 264.695);
+  --theme-icon: oklch(80.9% 0.105 251.813);
+  background: var(--main-bg);
+}
+
 body {
   margin: 0;
   padding: 0;
-  background: oklch(0.968 0.007 247.896);
+}
+
+.ant-collapse-item {
+  border-bottom: 1px solid var(--tag-border) !important;
+}
+
+.ant-collapse-item svg {
+  fill: var(--text-main) !important;
+}
+
+.ant-breadcrumb-link {
+  color: var(--text-main) !important;
+}
+
+.ant-breadcrumb-link a {
+  color: var(--text-secondary) !important;
+}
+
+.ant-breadcrumb-link a:hover {
+  text-decoration: underline;
+}
+
+
+.ant-breadcrumb-separator {
+  color: var(--text-secondary) !important;
+}
+
+.ant-timeline-item-tail {
+  border: 1px solid var(--tag-border) !important;
+}
+
+.ant-timeline-item-head {
+  background-color: var(--tag-background) !important;
+}
+
+.ant-timeline-item-last {
+  padding-bottom: 0px !important;
+  height: 20px !important;
 }

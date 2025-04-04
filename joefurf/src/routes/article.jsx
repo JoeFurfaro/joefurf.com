@@ -40,7 +40,7 @@ function RouteComponent() {
             },
           ]}
         />
-        <p className="text-slate-500 text-sm">Published on {search.date} by Joe Furfaro</p>
+        <p className="text-text-secondary text-sm">Published on {search.date} by Joe Furfaro</p>
       </div>
       <div className="markdown-parent flex flex-col gap-4">
         {MD !== null && <Markdown>{MD}</Markdown>}

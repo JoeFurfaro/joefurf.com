@@ -9,21 +9,22 @@ export const Route = createFileRoute("/roadmap")({
 function RouteComponent() {
   return (
     <PageLayout>
-      <h1 className="font-medium text-slate-700 text-3xl">Roadmap</h1>
+      <h1 className="font-medium text-text-main text-3xl">Roadmap</h1>
       <div className="flex flex-col gap-6">
-        <p className="text-slate-700 italic font-medium">
+        <p className="text-text-main italic font-medium">
           I know it's strange to have a roadmap for an entire person.
         </p>
-        <p className="text-slate-700">
+        <p className="text-text-main">
           But just for fun, give it a chance - a rough overview of some proud
           past moments and planned milestones of any size. No rules; simply
           how I want to visualize my life story to the public internet.
         </p>
-        <p className="text-slate-500">
+        <p className="text-text-secondary">
           Disclaimer: I reserve the right change this roadmap at any time, with no criticism from any project manager, similar title, or any title for that matter. Also, the future items come in no particular order.
         </p>
       </div>
       <Timeline
+        className="!text-text-main"
         items={[
           {
             color: "green",
@@ -113,7 +114,7 @@ function RouteComponent() {
           }
         ]}
       />
-      <h1 className="text-slate-700 text-xl">The End <span className="text-base text-slate-500">... or maybe not?</span></h1>
+      <h1 className="text-text-main text-xl">The End <span className="text-base text-text-secondary">... or maybe not?</span></h1>
     </PageLayout>
   );
 }
