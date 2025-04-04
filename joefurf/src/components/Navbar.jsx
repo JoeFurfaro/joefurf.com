@@ -27,6 +27,6 @@ export const Navbar = ({items}) => {
         <div className="flex gap-4">
             {items.map(item => <NavbarItem key={"navitem-" + item.label} label={item.label} path={item.path} />)}
         </div>
-        <Button className="!bg-tag-background !border-tag-border !text-text-secondary hover:!text-theme-icon" onClick={toggleTheme}>{curTheme === "light" ? <AiFillSun /> : <AiFillMoon />}</Button>
+        <Button className="!transition-none !bg-tag-background !border-tag-border !text-text-secondary hover:!text-theme-icon" onClick={toggleTheme}>{curTheme === "light" ? <AiFillSun /> : <AiFillMoon />}</Button>
     </div>
 };

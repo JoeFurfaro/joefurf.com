@@ -41,9 +41,9 @@ const Tags = () => {
 
   return tags.map(tag => {
     if(tag.variant === "slate")
-      return <Tag key={"tag-" + tag.label} className="!bg-tag-background !text-text-main !border-tag-border !mx-0">{tag.label}</Tag>;
+      return <Tag key={"tag-" + tag.label} className="!transition-none !bg-tag-background !text-text-main !border-tag-border !mx-0">{tag.label}</Tag>;
     else if(tag.variant === "green")
-      return <Tag key={"tag-" + tag.label} className="!bg-tag-background-green !text-tag-text-green !border-tag-border-green !mx-0">{tag.label}</Tag>;
+      return <Tag key={"tag-" + tag.label} className="!transition-none !bg-tag-background-green !text-tag-text-green !border-tag-border-green !mx-0">{tag.label}</Tag>;
 
   });
 };
