@@ -15,7 +15,7 @@ function RouteComponent() {
       <h1 className="font-medium text-text-main text-3xl">Blog</h1>
       <div className="flex flex-col gap-6">
         <p className="text-text-main">
-          I'd really love to to write some stuff and post it here some time soon, but the whole idea of it is quite intimidating to me.
+          Turns out, publishing thoughts on the internet is way more intimidating than I expected.
         </p>
         <p className="text-text-main italic font-medium">
           Check back for soon for my progress on eliminating this insecurity.

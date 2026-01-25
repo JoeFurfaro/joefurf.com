@@ -36,7 +36,6 @@ const Tags = () => {
     {label: "Nerd (Engineer)", variant: "slate"},
     {label: "Athlete", variant: "slate"},
     {label: "Adventurer", variant: "slate"},
-    {label: "Zac Main", variant: "green"},
   ];
 
   return tags.map(tag => {
@@ -66,13 +65,13 @@ const JobDetails = ({items}) => {
 
 const Career = () => {
   const items = [
-    // {
-    //   key: '1',
-    //   label: <JobHeader company="Stripe" logo={stripe} role="Software Engineer" time="Starting April, 2025" />,
-    //   children: <JobDetails items={[
-    //     <li><span className="text-text-secondary">Starting in April, 2025</span> - building Stripe's <a href="https://docs.stripe.com/get-started/account/orgs" target="_blank" className="!text-indigo-700 hover:!underline cursor-pointer">Organizations & Auth</a> product</li>
-    //   ]} />,
-    // },
+    {
+      key: '1',
+      label: <JobHeader company="Stripe" logo={stripe} role="Software Engineer" time="April 2025 - Current" />,
+      children: <JobDetails items={[
+        <li>Building infrastructure for how businesses organize and structure their accounts and relationships in the online money movement ecosystem</li>
+      ]} />,
+    },
     {
       key: '2',
       label: <JobHeader company="AIRTIME (start-up)" logo={airtime} role="Tech Lead" time="Current" />,
@@ -85,7 +84,7 @@ const Career = () => {
       key: '3',
       label: <JobHeader company="Martinrea" logo={martinrea} role="Engineering Supervisor" time="2023-2025" />,
       children: <JobDetails items={[
-        <li>Became a strong, confident, and purpose-driven leader through excellent mentorship from <a className="!text-hyperlink hover:!underline" href="https://www.linkedin.com/in/jeffrey-j-liaw-p-eng-973542a/" target="_blank">Jeffrey Liaw</a> and <a className="!text-hyperlink hover:!underline" href="https://www.linkedin.com/in/david-petkovsek/" target="_blank">David Petkovsek</a></li>,
+        <li>Became a strong, confident, and purpose-driven leader</li>,
         <li>Founded, designed, and implemented Martinrea's internal deployment platform <span className="text-fe">Factory Engine</span></li>,
         <li>Led and mentored 20+ people in Software Engineering and UI/UX design</li>,
         <li>Worked with C-Suite and senior operations leadership to develop standards & ship</li>,
@@ -188,16 +187,16 @@ function RouteComponent() {
       </div>
       <div className="flex flex-col gap-6 text-text-main">
         <p>
-          Hello fellow human 👋 welcome to my very small corner of the internet!
+          Hello fellow human 👋 welcome to my corner of the internet!
         </p>
         <p>
-          I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball <span className="italic text-text-secondary">(or without, I suppose)</span>, enjoying nature, visiting new places, singing, playing League of Legends, speedrunning Minecraft, and many other things.
+          I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball, enjoying nature, visiting new places, singing, speedrunning Minecraft, and many other things.
         </p>
         <p>
-          Whether it be with my family, my friends, or my beautiful girlfriend Briana, I value deep conversations and meaningful connection above most other things. However, I am <span className="font-medium italic">*slowly*</span> learning to also appreciate the simple things more: <span className="text-cool-breeze">a cool breeze</span> on a summer day or <span className="text-sashimi">the taste of fresh salmon sashimi</span> on the first bite.
+          Whether it be with my family, my friends, or my beautiful girlfriend Briana, I value deep conversations and meaningful connection highly. I'm also trying to slow down more and enjoy the small moments.
         </p>
         <p>
-          I am <span className="italic text-text-secondary">(almost)</span> always happy to connect and get to know each other! Feel free to shoot me a connect request on <a className="text-hyperlink hover:underline" href="https://www.linkedin.com/in/joe-furfaro/" target="_blank">LinkedIn</a>.
+          I am always happy to connect and get to know each other! Feel free to shoot me a connect request on <a className="text-hyperlink hover:underline" href="https://www.linkedin.com/in/joe-furfaro/" target="_blank">LinkedIn</a>.
         </p>
       </div>
       <h2 className="text-2xl text-text-main font-medium">My Career</h2>
