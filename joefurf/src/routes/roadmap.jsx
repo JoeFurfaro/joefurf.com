@@ -15,12 +15,11 @@ function RouteComponent() {
           I know it's strange to have a roadmap for an entire person.
         </p>
         <p className="text-text-main">
-          But just for fun, give it a chance - a rough overview of some proud
-          past moments and planned milestones of any size. No rules; simply
-          how I want to visualize my life story to the public internet.
+          But just for fun, give it a chance - proud moments and planned
+          milestones, no rules.
         </p>
         <p className="text-text-secondary">
-          Disclaimer: I reserve the right change this roadmap at any time, with no criticism from any project manager, similar title, or any title for that matter. Also, the future items come in no particular order.
+          Disclaimer: I reserve the right change this roadmap at any time, free of any and all criticism.
         </p>
       </div>
       <Timeline
@@ -55,10 +54,18 @@ function RouteComponent() {
             children: "Move out of my parents' house",
           },
           {
+            color: "green",
+            children: "Run a half-marathon",
+          },
+          {
             children: "Overcome my Kosmemophobia",
           },
           {
             children: "Make my first blog post on this website",
+          },
+          {
+            color: "blue",
+            children: "Launch AIRTIME",
           },
           {
             color: "gray",
@@ -74,19 +81,11 @@ function RouteComponent() {
           },
           {
             color: "gray",
-            children: "Run a half-marathon",
-          },
-          {
-            color: "gray",
             children: "Produce a \"higher-production\" video",
           },
           {
             color: "gray",
-            children: "Launch AIRTIME",
-          },
-          {
-            color: "gray",
-            children: "Hit platinum in League of Legends",
+            children: "Speedrun Minecraft in under 10 minutes",
           },
           {
             color: "gray",
