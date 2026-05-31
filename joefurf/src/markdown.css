@@ -2,6 +2,19 @@
     color: var(--text-main);
 }
 
+.markdown-parent h1,
+.markdown-parent h2,
+.markdown-parent h3,
+.markdown-parent h4,
+.markdown-parent h5,
+.markdown-parent h6 {
+    margin-top: 1.5rem;
+}
+
+.markdown-parent > :first-child {
+    margin-top: 0;
+}
+
 .markdown-parent h1 {
     font-size: 1.875rem;
     font-weight: 600;

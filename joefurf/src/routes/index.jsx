@@ -74,10 +74,9 @@ const Career = () => {
     },
     {
       key: '2',
-      label: <JobHeader company="AIRTIME (start-up)" logo={airtime} role="Tech Lead" time="Current" />,
+      label: <JobHeader company="Asobi (start-up)" logo={airtime} role="Tech Lead" time="Current" />,
       children: <JobDetails items={[
-        <li>Developing booking & company management suite for high-performance youth volleyball clinics</li>,
-        <li className="text-text-secondary">Target launch of new platform is Summer, 2026</li>
+        <li>Developing booking & company management platform for sports training organizations. Launched for <a href="https://airtimeathletics.com" target="_blank" rel="noreferrer" className="text-hyperlink hover:underline">AIRTIME Athletics</a> in April, 2026</li>
       ]} />,
     },
     {
@@ -193,7 +192,7 @@ function RouteComponent() {
           I am a {getAge()} year-old software engineer who gets a thrill out of designing large systems, playing any sport with a ball, enjoying nature, visiting new places, singing, speedrunning Minecraft, and many other things.
         </p>
         <p>
-          Whether it be with my family, my friends, or my beautiful girlfriend Briana, I value deep conversations and meaningful connection highly. I'm also trying to slow down more and enjoy the small moments.
+          Whether it be with my family, my friends, or my girlfriend, I value deep conversations and meaningful connection highly. I'm also trying to slow down more and enjoy the small moments.
         </p>
         <p>
           I am always happy to connect and get to know each other! Feel free to shoot me a connect request on <a className="text-hyperlink hover:underline" href="https://www.linkedin.com/in/joe-furfaro/" target="_blank">LinkedIn</a>.

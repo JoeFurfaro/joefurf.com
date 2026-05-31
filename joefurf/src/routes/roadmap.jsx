@@ -58,22 +58,22 @@ function RouteComponent() {
             children: "Run a half-marathon",
           },
           {
-            children: "Overcome my Kosmemophobia",
-          },
-          {
+            color: "green",
             children: "Make my first blog post on this website",
           },
           {
-            color: "blue",
+            color: "green",
             children: "Launch AIRTIME",
+          },
+          {
+            children: "Cook a fully self-sustaining meal — fish I caught, vegetables from the garden",
+          },
+          {
+            children: "Sell Asobi to 5 customers",
           },
           {
             color: "gray",
             children: "Hopefully make a second blog post on this website?",
-          },
-          {
-            color: "gray",
-            children: "Learn how to scale a software system to 1M+ users",
           },
           {
             color: "gray",

@@ -1,3 +1,3 @@
 export const articles = [
-    {"date": "2025-04-01", title: "Test Blog"},
+    {"date": "2026-05-27", title: "Five Lessons from Year One at Stripe"},
 ];
