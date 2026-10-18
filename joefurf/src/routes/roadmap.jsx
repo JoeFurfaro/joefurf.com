@@ -109,6 +109,10 @@ function RouteComponent() {
             children: "Travel solo",
           },
           {
+            color: "green",
+            children: "Make a second blog post on this website",
+          },
+          {
             children: "Cook a fully self-sustaining meal — fish I caught, vegetables from the garden",
           },
           {
@@ -119,10 +123,6 @@ function RouteComponent() {
           },
           {
             children: "Catch a pike, then catch a big pike",
-          },
-          {
-            color: "gray",
-            children: "Hopefully make a second blog post on this website?",
           },
           {
             color: "gray",
