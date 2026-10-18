@@ -172,12 +172,12 @@ const Details = ({ listing, onChange }) => {
         </Field>
         <div className="flex flex-col gap-2">
           <label className="flex flex-row items-center gap-2 text-sm font-medium text-text-main">
-            <input type="checkbox" className="accent-text-main" checked={form.offerShipping} onChange={set("offerShipping")} />
+            <input type="checkbox" className="accent-green" checked={form.offerShipping} onChange={set("offerShipping")} />
             Offer shipping (Canada)
           </label>
           {form.offerShipping && <Input inputMode="decimal" value={form.shipping} onChange={set("shipping")} placeholder="Shipping cost, e.g. 25" />}
           <label className="flex flex-row items-center gap-2 text-sm font-medium text-text-main">
-            <input type="checkbox" className="accent-text-main" checked={form.pickup} onChange={set("pickup")} />
+            <input type="checkbox" className="accent-green" checked={form.pickup} onChange={set("pickup")} />
             Offer free local pickup
           </label>
         </div>

@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as StyleguideImport } from './routes/styleguide'
 import { Route as RoadmapImport } from './routes/roadmap'
 import { Route as BlogImport } from './routes/blog'
 import { Route as ArticleImport } from './routes/article'
@@ -24,6 +25,12 @@ import { Route as AdminOrdersIdImport } from './routes/admin.orders.$id'
 import { Route as AdminListingsIdImport } from './routes/admin.listings.$id'
 
 // Create/Update Routes
+
+const StyleguideRoute = StyleguideImport.update({
+  id: '/styleguide',
+  path: '/styleguide',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const RoadmapRoute = RoadmapImport.update({
   id: '/roadmap',
@@ -130,6 +137,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapImport
       parentRoute: typeof rootRoute
     }
+    '/styleguide': {
+      id: '/styleguide'
+      path: '/styleguide'
+      fullPath: '/styleguide'
+      preLoaderRoute: typeof StyleguideImport
+      parentRoute: typeof rootRoute
+    }
     '/shop/$slug': {
       id: '/shop/$slug'
       path: '/shop/$slug'
@@ -197,6 +211,7 @@ export interface FileRoutesByFullPath {
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/styleguide': typeof StyleguideRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin/': typeof AdminIndexRoute
@@ -210,6 +225,7 @@ export interface FileRoutesByTo {
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/styleguide': typeof StyleguideRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin': typeof AdminIndexRoute
@@ -225,6 +241,7 @@ export interface FileRoutesById {
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/styleguide': typeof StyleguideRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin/': typeof AdminIndexRoute
@@ -241,6 +258,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/blog'
     | '/roadmap'
+    | '/styleguide'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin/'
@@ -253,6 +271,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/blog'
     | '/roadmap'
+    | '/styleguide'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin'
@@ -266,6 +285,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/blog'
     | '/roadmap'
+    | '/styleguide'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin/'
@@ -281,6 +301,7 @@ export interface RootRouteChildren {
   ArticleRoute: typeof ArticleRoute
   BlogRoute: typeof BlogRoute
   RoadmapRoute: typeof RoadmapRoute
+  StyleguideRoute: typeof StyleguideRoute
   ShopSlugRoute: typeof ShopSlugRoute
   ShopThanksRoute: typeof ShopThanksRoute
   ShopIndexRoute: typeof ShopIndexRoute
@@ -292,6 +313,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArticleRoute: ArticleRoute,
   BlogRoute: BlogRoute,
   RoadmapRoute: RoadmapRoute,
+  StyleguideRoute: StyleguideRoute,
   ShopSlugRoute: ShopSlugRoute,
   ShopThanksRoute: ShopThanksRoute,
   ShopIndexRoute: ShopIndexRoute,
@@ -312,6 +334,7 @@ export const routeTree = rootRoute
         "/article",
         "/blog",
         "/roadmap",
+        "/styleguide",
         "/shop/$slug",
         "/shop/thanks",
         "/shop/"
@@ -336,6 +359,9 @@ export const routeTree = rootRoute
     },
     "/roadmap": {
       "filePath": "roadmap.jsx"
+    },
+    "/styleguide": {
+      "filePath": "styleguide.jsx"
     },
     "/shop/$slug": {
       "filePath": "shop.$slug.jsx"

@@ -13,3 +13,11 @@ export const centsToDollars = (cents) => (cents === null || cents === undefined 
 
 export const formatDate = (unixSeconds) =>
   unixSeconds ? new Date(unixSeconds * 1000).toLocaleDateString("en-CA", { month: "short", day: "numeric", year: "numeric" }) : "";
+
+// "$185" for whole dollars, "$185.50" otherwise. Used on price tags.
+export const formatPrice = (cents) => formatMoney(cents).replace(/\.00$/, "");
+
+export const formatMonth = (unixSeconds) =>
+  unixSeconds ? new Date(unixSeconds * 1000).toLocaleDateString("en-CA", { month: "short", year: "numeric" }) : "";
+
+export const catalogNumber = (n) => `No. ${String(n ?? 0).padStart(3, "0")}`;

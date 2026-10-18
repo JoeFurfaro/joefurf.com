@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Breadcrumb } from "antd";
 import { useEffect, useState } from "react";
 import { PageLayout } from "../components/PageLayout";
-import { Badge, Button, ErrorText, Loading } from "../components/ui";
+import { Button, ErrorText, Loading } from "../components/ui";
+import { Breadcrumbs, SectionHeading } from "../components/Decor";
 import { api, useApi } from "../lib/api";
-import { formatMoney } from "../lib/money";
+import { catalogNumber, formatMoney, formatMonth, formatPrice } from "../lib/money";
 
 export const Route = createFileRoute("/shop/$slug")({
   component: RouteComponent,
@@ -18,8 +18,8 @@ const Gallery = ({ photos, title }) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="overflow-hidden rounded-md border border-tag-border bg-tag-background">
-        <img src={current.url} alt={title} className="w-full max-h-[70vh] object-contain" />
+      <div className="field-photo rounded-md border border-rule bg-tag-background">
+        <img key={current.id} src={current.url} alt={title} className="gallery-image w-full max-h-[70vh] object-contain" />
       </div>
       {photos.length > 1 && (
         <div className="flex flex-row gap-2 overflow-x-auto">
@@ -27,7 +27,7 @@ const Gallery = ({ photos, title }) => {
             <button
               key={p.id}
               onClick={() => setIndex(i)}
-              className={`shrink-0 h-16 w-16 overflow-hidden rounded border-2 cursor-pointer ${i === index ? "border-text-main" : "border-transparent opacity-70 hover:opacity-100"}`}
+              className={`shrink-0 h-16 w-16 overflow-hidden rounded-sm border-2 cursor-pointer transition-opacity ${i === index ? "border-teal" : "border-transparent opacity-70 hover:opacity-100"}`}
             >
               <img src={p.thumbUrl} alt="" className="h-full w-full object-cover" />
             </button>
@@ -40,15 +40,39 @@ const Gallery = ({ photos, title }) => {
 
 const FulfillmentOption = ({ checked, onChange, label, sublabel }) => (
   <label
-    className={`flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-md border cursor-pointer ${checked ? "border-text-main" : "border-tag-border"}`}
+    className={`flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-md border cursor-pointer bg-card transition-colors ${checked ? "border-teal" : "border-rule hover:border-text-secondary"}`}
   >
     <span className="flex flex-row items-center gap-3">
-      <input type="radio" checked={checked} onChange={onChange} className="accent-text-main" />
-      <span className="text-text-main">{label}</span>
+      <input type="radio" checked={checked} onChange={onChange} className="sr-only" />
+      <span className={`radio-dot ${checked ? "on" : ""}`} aria-hidden />
+      <span className="font-display text-lg text-text-main">{label}</span>
     </span>
-    <span className="text-text-secondary text-sm">{sublabel}</span>
+    <span className="font-mono text-xs text-text-secondary">{sublabel}</span>
   </label>
 );
+
+// "Species: Black walnut" lines become spec rows with dotted leaders; anything else stays as text.
+const Details = ({ text }) => {
+  const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
+  return (
+    <div className="flex flex-col gap-1.5 font-mono text-[0.85rem]">
+      {lines.map((line, i) => {
+        const match = line.match(/^([^:]{1,30}):\s*(.+)$/);
+        return match ? (
+          <div key={i} className="spec-row flex flex-row items-baseline gap-2" style={{ animationDelay: `${0.3 + i * 0.08}s` }}>
+            <span className="text-text-secondary">{match[1]}</span>
+            <span className="leader" />
+            <span className="text-text-main text-right">{match[2]}</span>
+          </div>
+        ) : (
+          <p key={i} className="spec-row text-text-main" style={{ animationDelay: `${0.3 + i * 0.08}s` }}>
+            {line}
+          </p>
+        );
+      })}
+    </div>
+  );
+};
 
 const BuyBox = ({ listing }) => {
   const canShip = listing.shippingCents !== null;
@@ -135,10 +159,10 @@ function RouteComponent() {
 
   return (
     <PageLayout>
-      <Breadcrumb
+      <Breadcrumbs
         items={[
-          { title: <a onClick={() => navigate({ to: "/shop" })}>shop</a> },
-          { title: listing?.title ?? "…" },
+          { label: "shop", onClick: () => navigate({ to: "/shop" }) },
+          { label: listing?.title ?? "…" },
         ]}
       />
       {(loading || !released) && !listing && <Loading />}
@@ -147,17 +171,24 @@ function RouteComponent() {
         <div className="flex flex-col gap-6">
           <Gallery photos={listing.photos} title={listing.title} />
           <div className="flex flex-col gap-2">
-            <div className="flex flex-row justify-between items-start gap-4">
-              <h1 className="text-3xl text-text-main font-medium">{listing.title}</h1>
-              {listing.status === "sold" ? <Badge>Sold</Badge> : listing.status === "reserved" ? <Badge>On hold</Badge> : null}
+            <div className="flex flex-row items-center justify-between gap-4">
+              <span className="font-mono text-xs text-text-secondary">{catalogNumber(listing.number)}</span>
+              {listing.status === "sold" ? (
+                <span className="sold-label">Sold · {formatMonth(listing.soldAt)}</span>
+              ) : listing.status === "reserved" ? (
+                <span className="sold-label !text-ochre">On hold</span>
+              ) : null}
             </div>
-            <p className="text-2xl text-text-main">{formatMoney(listing.priceCents)}</p>
+            <div className="flex flex-row justify-between items-baseline gap-4">
+              <h1 className="text-4xl text-text-main font-medium">{listing.title}</h1>
+              <p className="font-mono text-xl text-text-main shrink-0">{formatPrice(listing.priceCents)}</p>
+            </div>
           </div>
           {listing.description && <p className="text-text-main whitespace-pre-line">{listing.description}</p>}
           {listing.details && (
-            <div className="flex flex-col gap-2">
-              <h2 className="text-lg text-text-main font-medium">Details</h2>
-              <p className="text-text-secondary whitespace-pre-line">{listing.details}</p>
+            <div className="flex flex-col gap-3">
+              <SectionHeading color="teal">Details</SectionHeading>
+              <Details text={listing.details} />
             </div>
           )}
           <BuyBox key={listing.status} listing={listing} />

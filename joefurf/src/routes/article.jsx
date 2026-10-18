@@ -2,7 +2,7 @@ import { createFileRoute, useSearch } from '@tanstack/react-router'
 import { PageLayout } from '../components/PageLayout';
 import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
-import { Breadcrumb } from 'antd';
+import { Breadcrumbs } from '../components/Decor';
 import { articles } from '../articles';
 import { useNavigate } from '@tanstack/react-router';
 import "../markdown.css";
@@ -30,17 +30,13 @@ function RouteComponent() {
   return (
     <PageLayout>
       <div className="flex flex-col gap-2">
-        <Breadcrumb
+        <Breadcrumbs
           items={[
-            {
-              title: <a onClick={() => navigate({to: "/blog"})}>blog</a>,
-            },
-            {
-              title: title,
-            },
+            { label: "blog", onClick: () => navigate({to: "/blog"}) },
+            { label: title },
           ]}
         />
-        <p className="text-text-secondary text-sm">Published on {search.date} by Joe Furfaro</p>
+        <p className="text-text-secondary tracking-[0.08em] [font-variant:all-small-caps]">Published on <span className="font-mono text-xs [font-variant:normal] tracking-normal">{search.date}</span> by Joe Furfaro</p>
       </div>
       <div className="markdown-parent flex flex-col gap-4">
         {MD !== null && <Markdown>{MD}</Markdown>}

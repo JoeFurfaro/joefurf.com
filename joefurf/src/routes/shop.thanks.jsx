@@ -29,7 +29,7 @@ function RouteComponent() {
               ? "I'll email you soon to set up a pickup time in Toronto."
               : "I'll pack it up carefully and email you a tracking number once it ships."}
           </p>
-          <Link to="/shop" className="text-hyperlink hover:underline">
+          <Link to="/shop" className="trail self-start">
             Back to the shop
           </Link>
         </div>

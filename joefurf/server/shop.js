@@ -22,6 +22,7 @@ export function photosFor(listingId) {
 export function publicListing(listing, { withPhotos = true } = {}) {
   const photos = photosFor(listing.id);
   return {
+    number: listing.id,
     slug: listing.slug,
     title: listing.title,
     description: listing.description,
