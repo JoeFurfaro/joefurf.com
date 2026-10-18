@@ -138,6 +138,10 @@ function RouteComponent() {
           },
           {
             color: "gray",
+            children: "Run a marathon",
+          },
+          {
+            color: "gray",
             children: "Learn a martial art",
           },
           {
