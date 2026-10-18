@@ -4,6 +4,7 @@ import { isAdmin, login, logout, requireAdmin } from "../auth.js";
 import { db } from "../db.js";
 import { notifyShipped } from "../notifications.js";
 import { adminListing } from "../shop.js";
+import { findArticle } from "../articles.js";
 import { deleteObject, putObject } from "../storage.js";
 import { now, slugify } from "../util.js";
 
@@ -239,4 +240,39 @@ adminRoutes.patch("/orders/:id", async (c) => {
     await notifyShipped(next, getListing(order.listing_id));
   }
   return c.json(db.query(`${ORDER_SELECT} WHERE o.id = ?`).get(order.id));
+});
+
+// ---- Blog feedback & votes ----
+
+adminRoutes.get("/feedback", async (c) => {
+  const rows = db.query("SELECT * FROM article_feedback ORDER BY created_at DESC LIMIT 500").all();
+  const weekAgo = new Date(Date.now() - 6 * 86400 * 1000).toISOString().slice(0, 10);
+  const stats = db
+    .query(
+      `SELECT article,
+         (SELECT COUNT(*) FROM article_views v WHERE v.article = a.article) AS views,
+         (SELECT COUNT(DISTINCT voter_id) FROM article_views v WHERE v.article = a.article) AS readers,
+         (SELECT COUNT(*) FROM article_views v WHERE v.article = a.article AND v.day >= ?) AS views_week,
+         (SELECT COUNT(*) FROM article_votes t WHERE t.article = a.article AND t.vote = 1) AS up,
+         (SELECT COUNT(*) FROM article_votes t WHERE t.article = a.article AND t.vote = -1) AS down
+       FROM (SELECT article FROM article_views UNION SELECT article FROM article_votes) a
+       ORDER BY views DESC`,
+    )
+    .all(weekAgo);
+  const slugs = [...new Set([...rows.map((r) => r.article), ...stats.map((v) => v.article)])];
+  const titles = Object.fromEntries(await Promise.all(slugs.map(async (s) => [s, (await findArticle(s))?.title ?? s])));
+  return c.json({ feedback: rows.map((r) => ({ ...r, title: titles[r.article] })), stats: stats.map((v) => ({ ...v, title: titles[v.article] })) });
+});
+
+adminRoutes.patch("/feedback/:id", async (c) => {
+  const { read } = await c.req.json();
+  const row = db
+    .query("UPDATE article_feedback SET read_at = ? WHERE id = ? RETURNING *")
+    .get(read ? now() : null, c.req.param("id"));
+  return row ? c.json(row) : c.json({ error: "Not found" }, 404);
+});
+
+adminRoutes.delete("/feedback/:id", (c) => {
+  db.query("DELETE FROM article_feedback WHERE id = ?").run(c.req.param("id"));
+  return c.json({ ok: true });
 });

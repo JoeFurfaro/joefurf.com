@@ -3,6 +3,7 @@ import { PageLayout } from '../components/PageLayout';
 import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 import { Breadcrumbs } from '../components/Decor';
+import { ArticleResponses } from '../components/ArticleResponses';
 import { articles } from '../articles';
 import { useNavigate } from '@tanstack/react-router';
 import "../markdown.css";
@@ -41,6 +42,7 @@ function RouteComponent() {
       <div className="markdown-parent flex flex-col gap-4">
         {MD !== null && <Markdown>{MD}</Markdown>}
       </div>
+      {MD !== null && <ArticleResponses slug={search.date} />}
     </PageLayout>
   );
 }

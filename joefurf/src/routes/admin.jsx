@@ -55,9 +55,14 @@ function RouteComponent() {
       {data?.admin && (
         <>
           <div className="flex flex-row justify-between items-center text-sm">
-            <Link to="/admin" className="text-text-secondary hover:underline" activeOptions={{ exact: true }}>
-              admin home
-            </Link>
+            <div className="flex flex-row gap-4">
+              <Link to="/admin" className="text-text-secondary hover:underline" activeOptions={{ exact: true }}>
+                admin home
+              </Link>
+              <Link to="/admin/feedback" className="text-text-secondary hover:underline">
+                blog feedback
+              </Link>
+            </div>
             <button onClick={logout} className="text-text-secondary hover:underline cursor-pointer">
               log out
             </button>

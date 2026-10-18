@@ -68,6 +68,38 @@ const migrations = [
   );
   CREATE INDEX orders_status ON orders(status, created_at);
   `,
+  `
+  -- Blog: one vote per anonymous visitor per article (vote is 1 or -1).
+  CREATE TABLE article_votes (
+    article TEXT NOT NULL,
+    voter_id TEXT NOT NULL,
+    vote INTEGER NOT NULL CHECK (vote IN (1, -1)),
+    created_at INTEGER NOT NULL DEFAULT (unixepoch()),
+    updated_at INTEGER NOT NULL DEFAULT (unixepoch()),
+    PRIMARY KEY (article, voter_id)
+  );
+
+  -- Blog: private feedback, only visible in admin.
+  CREATE TABLE article_feedback (
+    id INTEGER PRIMARY KEY,
+    article TEXT NOT NULL,
+    message TEXT NOT NULL,
+    name TEXT,
+    email TEXT,
+    created_at INTEGER NOT NULL DEFAULT (unixepoch()),
+    read_at INTEGER
+  );
+  CREATE INDEX article_feedback_created ON article_feedback(created_at);
+  `,
+  `
+  -- Blog: one row per anonymous reader per article per day (private; admin only).
+  CREATE TABLE article_views (
+    article TEXT NOT NULL,
+    day TEXT NOT NULL,
+    voter_id TEXT NOT NULL,
+    PRIMARY KEY (article, day, voter_id)
+  );
+  `,
 ];
 
 function migrate() {

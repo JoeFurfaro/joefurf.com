@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { config, isProd } from "./config.js";
 import "./db.js";
 import { adminRoutes } from "./routes/admin.js";
+import { blogRoutes } from "./routes/blog.js";
 import { publicRoutes } from "./routes/public.js";
 import { webhookRoutes } from "./routes/webhook.js";
 import { getObject } from "./storage.js";
@@ -27,6 +28,7 @@ app.use(
   }),
 );
 app.route("/api/admin", adminRoutes);
+app.route("/api/articles", blogRoutes);
 app.route("/api", publicRoutes);
 app.all("/api/*", (c) => c.json({ error: "Not found" }, 404));
 

@@ -21,6 +21,7 @@ import { Route as ShopIndexImport } from './routes/shop.index'
 import { Route as AdminIndexImport } from './routes/admin.index'
 import { Route as ShopThanksImport } from './routes/shop.thanks'
 import { Route as ShopSlugImport } from './routes/shop.$slug'
+import { Route as AdminFeedbackImport } from './routes/admin.feedback'
 import { Route as AdminOrdersIdImport } from './routes/admin.orders.$id'
 import { Route as AdminListingsIdImport } from './routes/admin.listings.$id'
 
@@ -86,6 +87,12 @@ const ShopSlugRoute = ShopSlugImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminFeedbackRoute = AdminFeedbackImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => AdminRoute,
+} as any)
+
 const AdminOrdersIdRoute = AdminOrdersIdImport.update({
   id: '/orders/$id',
   path: '/orders/$id',
@@ -144,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StyleguideImport
       parentRoute: typeof rootRoute
     }
+    '/admin/feedback': {
+      id: '/admin/feedback'
+      path: '/feedback'
+      fullPath: '/admin/feedback'
+      preLoaderRoute: typeof AdminFeedbackImport
+      parentRoute: typeof AdminImport
+    }
     '/shop/$slug': {
       id: '/shop/$slug'
       path: '/shop/$slug'
@@ -192,12 +206,14 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AdminRouteChildren {
+  AdminFeedbackRoute: typeof AdminFeedbackRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminListingsIdRoute: typeof AdminListingsIdRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminFeedbackRoute: AdminFeedbackRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminListingsIdRoute: AdminListingsIdRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
@@ -212,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
   '/styleguide': typeof StyleguideRoute
+  '/admin/feedback': typeof AdminFeedbackRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin/': typeof AdminIndexRoute
@@ -226,6 +243,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
   '/styleguide': typeof StyleguideRoute
+  '/admin/feedback': typeof AdminFeedbackRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin': typeof AdminIndexRoute
@@ -242,6 +260,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
   '/styleguide': typeof StyleguideRoute
+  '/admin/feedback': typeof AdminFeedbackRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/thanks': typeof ShopThanksRoute
   '/admin/': typeof AdminIndexRoute
@@ -259,6 +278,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/roadmap'
     | '/styleguide'
+    | '/admin/feedback'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin/'
@@ -272,6 +292,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/roadmap'
     | '/styleguide'
+    | '/admin/feedback'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin'
@@ -286,6 +307,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/roadmap'
     | '/styleguide'
+    | '/admin/feedback'
     | '/shop/$slug'
     | '/shop/thanks'
     | '/admin/'
@@ -346,6 +368,7 @@ export const routeTree = rootRoute
     "/admin": {
       "filePath": "admin.jsx",
       "children": [
+        "/admin/feedback",
         "/admin/",
         "/admin/listings/$id",
         "/admin/orders/$id"
@@ -362,6 +385,10 @@ export const routeTree = rootRoute
     },
     "/styleguide": {
       "filePath": "styleguide.jsx"
+    },
+    "/admin/feedback": {
+      "filePath": "admin.feedback.jsx",
+      "parent": "/admin"
     },
     "/shop/$slug": {
       "filePath": "shop.$slug.jsx"

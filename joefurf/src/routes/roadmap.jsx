@@ -109,14 +109,32 @@ function RouteComponent() {
             children: "Launch AIRTIME",
           },
           {
+            color: "green",
+            children: "Travel solo",
+          },
+          {
             children: "Cook a fully self-sustaining meal — fish I caught, vegetables from the garden",
           },
           {
             children: "Sell Asobi to 5 customers",
           },
           {
+            children: "Get a boating license",
+          },
+          {
+            children: "Catch a pike",
+          },
+          {
             color: "gray",
             children: "Hopefully make a second blog post on this website?",
+          },
+          {
+            color: "gray",
+            children: "Go ice fishing",
+          },
+          {
+            color: "gray",
+            children: "Sell a woodworking piece",
           },
           {
             color: "gray",
