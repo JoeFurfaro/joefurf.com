@@ -86,11 +86,7 @@ function RouteComponent() {
           },
           {
             color: "green",
-            children: <>
-              <p>Find a stable full-time job</p>
-              <p>Have a positive influence on people at said job</p>
-              <p>Implement something big at said job</p>
-            </>,
+            children: "Find a stable full-time job",
           },
           {
             color: "green",
@@ -122,7 +118,7 @@ function RouteComponent() {
             children: "Get my boating license",
           },
           {
-            children: "Catch a pike",
+            children: "Catch a pike, then catch a big pike",
           },
           {
             color: "gray",
@@ -131,6 +127,18 @@ function RouteComponent() {
           {
             color: "gray",
             children: "Go ice fishing",
+          },
+          {
+            color: "gray",
+            children: "Week-long camping & fishing trip",
+          },
+          {
+            color: "gray",
+            children: "Scuba training",
+          },
+          {
+            color: "gray",
+            children: "Christmas in New York City",
           },
           {
             color: "gray",
