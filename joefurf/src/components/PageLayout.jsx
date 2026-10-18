@@ -4,6 +4,7 @@ const nav_items = [
     {label: "me", path: "/"},
     {label: "blog", path: "/blog"},
     {label: "roadmap", path: "/roadmap"},
+    {label: "shop", path: "/shop"},
 ]
 
 export const PageLayout = ({children}) => {

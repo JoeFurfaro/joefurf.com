@@ -1,30 +1,29 @@
-# Build stage
+# Build the frontend
 FROM oven/bun:1-alpine AS build
-
 WORKDIR /app
-
-# Copy package files
 COPY package.json bun.lock ./
-
-# Install dependencies
 RUN bun install --frozen-lockfile
-
-# Copy source code
 COPY . .
-
-# Build the app
 RUN bun run build
 
-# Production stage - serve with nginx
-FROM nginx:alpine
+# Production dependencies only
+FROM oven/bun:1-alpine AS deps
+WORKDIR /app
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
 
-# Copy built assets from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Runtime: Bun server (API + built frontend), with Litestream replicating SQLite to object storage
+FROM oven/bun:1-alpine
+WORKDIR /app
+COPY --from=litestream/litestream:0.3.13 /usr/local/bin/litestream /usr/local/bin/litestream
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY package.json litestream.yml start.sh ./
+COPY server ./server
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+ENV NODE_ENV=production \
+    PORT=8080 \
+    DATA_DIR=/data
 
-# Expose port 8080 (Fly.io default)
 EXPOSE 8080
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "start.sh"]

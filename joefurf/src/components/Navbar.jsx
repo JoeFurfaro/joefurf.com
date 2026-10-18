@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useStableCallback } from '@tanstack/react-router';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { Button } from "antd";
 import { useState } from 'react';
 import { AiFillSun, AiFillMoon } from "react-icons/ai";
@@ -7,9 +7,9 @@ import { AiFillSun, AiFillMoon } from "react-icons/ai";
 const NavbarItem = ({label, path}) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const selected = path === location.pathname;
+    const selected = path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
-    return selected ? <p className="hover:underline cursor-pointer text-hyperlink">{label}</p> : <p className="text-text-main cursor-pointer hover:underline hover:text-text-secondary" onClick={() => navigate({to: path})}>{label}</p>;
+    return selected ? <p className="hover:underline cursor-pointer text-hyperlink" onClick={() => navigate({to: path})}>{label}</p> : <p className="text-text-main cursor-pointer hover:underline hover:text-text-secondary" onClick={() => navigate({to: path})}>{label}</p>;
 }
 
 export const Navbar = ({items}) => {

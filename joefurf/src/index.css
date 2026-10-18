@@ -18,6 +18,7 @@
 }
 
 .theme-light {
+  color-scheme: light;
   --text-main: oklch(37.2% 0.044 257.287);
   --text-secondary: oklch(55.4% 0.046 257.417);
   --tag-background: oklch(92.9% 0.013 255.508);
@@ -36,6 +37,7 @@
 }
 
 .theme-dark {
+  color-scheme: dark;
   --text-main: oklch(86.9% 0.022 252.894);
   --text-secondary: oklch(70.4% 0.04 256.788);
   --tag-background: oklch(37.2% 0.044 257.287);

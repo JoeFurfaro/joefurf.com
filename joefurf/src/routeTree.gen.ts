@@ -14,7 +14,14 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as RoadmapImport } from './routes/roadmap'
 import { Route as BlogImport } from './routes/blog'
 import { Route as ArticleImport } from './routes/article'
+import { Route as AdminImport } from './routes/admin'
 import { Route as IndexImport } from './routes/index'
+import { Route as ShopIndexImport } from './routes/shop.index'
+import { Route as AdminIndexImport } from './routes/admin.index'
+import { Route as ShopThanksImport } from './routes/shop.thanks'
+import { Route as ShopSlugImport } from './routes/shop.$slug'
+import { Route as AdminOrdersIdImport } from './routes/admin.orders.$id'
+import { Route as AdminListingsIdImport } from './routes/admin.listings.$id'
 
 // Create/Update Routes
 
@@ -36,10 +43,52 @@ const ArticleRoute = ArticleImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminRoute = AdminImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const ShopIndexRoute = ShopIndexImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminIndexRoute = AdminIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+
+const ShopThanksRoute = ShopThanksImport.update({
+  id: '/shop/thanks',
+  path: '/shop/thanks',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ShopSlugRoute = ShopSlugImport.update({
+  id: '/shop/$slug',
+  path: '/shop/$slug',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminOrdersIdRoute = AdminOrdersIdImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
+
+const AdminListingsIdRoute = AdminListingsIdImport.update({
+  id: '/listings/$id',
+  path: '/listings/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -51,6 +100,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminImport
       parentRoute: typeof rootRoute
     }
     '/article': {
@@ -74,16 +130,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapImport
       parentRoute: typeof rootRoute
     }
+    '/shop/$slug': {
+      id: '/shop/$slug'
+      path: '/shop/$slug'
+      fullPath: '/shop/$slug'
+      preLoaderRoute: typeof ShopSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/shop/thanks': {
+      id: '/shop/thanks'
+      path: '/shop/thanks'
+      fullPath: '/shop/thanks'
+      preLoaderRoute: typeof ShopThanksImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexImport
+      parentRoute: typeof AdminImport
+    }
+    '/shop/': {
+      id: '/shop/'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/listings/$id': {
+      id: '/admin/listings/$id'
+      path: '/listings/$id'
+      fullPath: '/admin/listings/$id'
+      preLoaderRoute: typeof AdminListingsIdImport
+      parentRoute: typeof AdminImport
+    }
+    '/admin/orders/$id': {
+      id: '/admin/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/admin/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdImport
+      parentRoute: typeof AdminImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface AdminRouteChildren {
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminListingsIdRoute: typeof AdminListingsIdRoute
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexRoute: AdminIndexRoute,
+  AdminListingsIdRoute: AdminListingsIdRoute,
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/shop/$slug': typeof ShopSlugRoute
+  '/shop/thanks': typeof ShopThanksRoute
+  '/admin/': typeof AdminIndexRoute
+  '/shop': typeof ShopIndexRoute
+  '/admin/listings/$id': typeof AdminListingsIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,37 +210,91 @@ export interface FileRoutesByTo {
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/shop/$slug': typeof ShopSlugRoute
+  '/shop/thanks': typeof ShopThanksRoute
+  '/admin': typeof AdminIndexRoute
+  '/shop': typeof ShopIndexRoute
+  '/admin/listings/$id': typeof AdminListingsIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/article': typeof ArticleRoute
   '/blog': typeof BlogRoute
   '/roadmap': typeof RoadmapRoute
+  '/shop/$slug': typeof ShopSlugRoute
+  '/shop/thanks': typeof ShopThanksRoute
+  '/admin/': typeof AdminIndexRoute
+  '/shop/': typeof ShopIndexRoute
+  '/admin/listings/$id': typeof AdminListingsIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/article' | '/blog' | '/roadmap'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/article'
+    | '/blog'
+    | '/roadmap'
+    | '/shop/$slug'
+    | '/shop/thanks'
+    | '/admin/'
+    | '/shop'
+    | '/admin/listings/$id'
+    | '/admin/orders/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/article' | '/blog' | '/roadmap'
-  id: '__root__' | '/' | '/article' | '/blog' | '/roadmap'
+  to:
+    | '/'
+    | '/article'
+    | '/blog'
+    | '/roadmap'
+    | '/shop/$slug'
+    | '/shop/thanks'
+    | '/admin'
+    | '/shop'
+    | '/admin/listings/$id'
+    | '/admin/orders/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/article'
+    | '/blog'
+    | '/roadmap'
+    | '/shop/$slug'
+    | '/shop/thanks'
+    | '/admin/'
+    | '/shop/'
+    | '/admin/listings/$id'
+    | '/admin/orders/$id'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ArticleRoute: typeof ArticleRoute
   BlogRoute: typeof BlogRoute
   RoadmapRoute: typeof RoadmapRoute
+  ShopSlugRoute: typeof ShopSlugRoute
+  ShopThanksRoute: typeof ShopThanksRoute
+  ShopIndexRoute: typeof ShopIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   ArticleRoute: ArticleRoute,
   BlogRoute: BlogRoute,
   RoadmapRoute: RoadmapRoute,
+  ShopSlugRoute: ShopSlugRoute,
+  ShopThanksRoute: ShopThanksRoute,
+  ShopIndexRoute: ShopIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,13 +308,25 @@ export const routeTree = rootRoute
       "filePath": "__root.jsx",
       "children": [
         "/",
+        "/admin",
         "/article",
         "/blog",
-        "/roadmap"
+        "/roadmap",
+        "/shop/$slug",
+        "/shop/thanks",
+        "/shop/"
       ]
     },
     "/": {
       "filePath": "index.jsx"
+    },
+    "/admin": {
+      "filePath": "admin.jsx",
+      "children": [
+        "/admin/",
+        "/admin/listings/$id",
+        "/admin/orders/$id"
+      ]
     },
     "/article": {
       "filePath": "article.jsx"
@@ -151,6 +336,27 @@ export const routeTree = rootRoute
     },
     "/roadmap": {
       "filePath": "roadmap.jsx"
+    },
+    "/shop/$slug": {
+      "filePath": "shop.$slug.jsx"
+    },
+    "/shop/thanks": {
+      "filePath": "shop.thanks.jsx"
+    },
+    "/admin/": {
+      "filePath": "admin.index.jsx",
+      "parent": "/admin"
+    },
+    "/shop/": {
+      "filePath": "shop.index.jsx"
+    },
+    "/admin/listings/$id": {
+      "filePath": "admin.listings.$id.jsx",
+      "parent": "/admin"
+    },
+    "/admin/orders/$id": {
+      "filePath": "admin.orders.$id.jsx",
+      "parent": "/admin"
     }
   }
 }

@@ -1,0 +1,10 @@
+# Continuous SQLite backups to the Tigris bucket (env vars are set by `fly storage create`).
+dbs:
+  - path: ${DATA_DIR}/shop.db
+    replicas:
+      - type: s3
+        bucket: ${BUCKET_NAME}
+        path: litestream/shop.db
+        endpoint: ${AWS_ENDPOINT_URL_S3}
+        region: ${AWS_REGION}
+        retention: 720h

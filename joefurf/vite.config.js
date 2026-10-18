@@ -10,4 +10,11 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    // The Bun server (`bun run dev:server`) handles the API and uploaded photos.
+    proxy: {
+      '/api': 'http://localhost:3000',
+      '/media': 'http://localhost:3000',
+    },
+  },
 })
